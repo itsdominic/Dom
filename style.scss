@@ -1,0 +1,356 @@
+$colors: (
+  main: #5af,
+  seconday: #fff,
+);
+
+@mixin line-default {
+  border: solid map-get($colors, main) 0.8px;
+  width: 60%;
+  margin: auto;
+  align-content: center;
+}
+
+@mixin section-heading {
+  letter-spacing: 1.2rem;
+  font-size: 2rem;
+  font-weight: lighter;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+.showcase {
+  height: 100vh;
+  width: 100vw;
+  background-color: #363636;
+
+  .showcase__container {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 2fr 1fr 1fr;
+
+    .showcase__container-headings {
+      justify-self: center;
+      align-self: end;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 2.5;
+
+      h1 {
+        letter-spacing: 1.2rem;
+        font-size: 4.5rem;
+        color: map-get($colors, seconday);
+        font-weight: lighter;
+        animation: moveInLeft 2s ease-out;
+        margin: 0;
+
+        .blue {
+          color: map-get($colors, main);
+        }
+      }
+
+      h3 {
+        letter-spacing: 1rem;
+        color: map-get($colors, seconday);
+        font-weight: lighter;
+        animation: moveInRight 2s ease-out;
+        margin: 0;
+
+        .blue {
+          color: map-get($colors, main);
+        }
+      }
+    }
+
+    .showcase__container-icons {
+      font-size: 3rem;
+      text-align: center;
+      color: map-get($colors, seconday);
+      animation: moveInBottom 1s ease-out 0.3s;
+      animation-fill-mode: backward;
+
+      a {
+        color: map-get($colors, seconday);
+
+        &:hover {
+          color: map-get($colors, main);
+        }
+      }
+
+      i {
+        margin: 2rem 1rem;
+      }
+    }
+
+    .showcase__container-button {
+      justify-self: center;
+      align-self: end;
+      text-align: center;
+      color: map-get($colors, seconday);
+      text-transform: uppercase;
+      letter-spacing: 0.8rem;
+      margin-bottom: 1rem;
+
+      h4 {
+        margin: 0.5rem 0;
+      }
+
+      a {
+        font-size: 2.5rem;
+        color: map-get($colors, seconday);
+
+        &:hover {
+          color: map-get($colors, main);
+        }
+      }
+    }
+  }
+}
+
+.about-me {
+  padding: 8rem 1.5rem;
+
+  .line {
+    @include line-default();
+  }
+
+  h1 {
+    @include section-heading();
+  }
+
+  .about-me__container {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    padding-top: 4.5rem;
+
+    .about-me__image {
+      display: grid;
+      margin-right: 4rem;
+
+      img {
+        width: 50%;
+        border-radius: 50%;
+        justify-self: end;
+      }
+    }
+
+    .about-me__paragraph {
+      width: 20rem;
+      text-align: center;
+    }
+  }
+}
+
+.tools {
+  padding: 0 1.5rem;
+  padding-bottom: 8rem;
+
+  h1 {
+    @include section-heading();
+  }
+
+  .line {
+    @include line-default();
+  }
+
+  .tools__container {
+    font-size: 5rem;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 4.5rem;
+  }
+}
+
+.portfolio {
+  padding: 0 1.5rem;
+  padding-bottom: 2rem;
+
+  h1 {
+    @include section-heading();
+
+    span {
+      font-size: 1.2rem;
+      letter-spacing: 0;
+    }
+  }
+
+  .line {
+    @include line-default();
+  }
+
+  .portfolio__container {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-gap: 1rem;
+    padding-top: 4.5rem;
+  }
+}
+
+.project {
+  h2 {
+    font-size: 2rem;
+    font-weight: lighter;
+    text-align: center;
+
+    span {
+      font-size: 1rem;
+    }
+  }
+  .container {
+    position: relative;
+    width: 100%;
+  }
+  .container:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .container:hover::before {
+    background-color: rgba(0, 0, 0, 0.708);
+  }
+  .container img {
+    display: block;
+  }
+  .container button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: map-get($colors, main);
+    color: white;
+    font-size: 1.2rem;
+    padding: 1rem 3rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    opacity: 0;
+  }
+  .container:hover button {
+    opacity: 1;
+  }
+}
+
+footer {
+  background-color: #363636;
+  color: black;
+  text-align: center;
+  width: 100%;
+
+  p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: map-get($colors, seconday);
+  }
+
+  i {
+    color: map-get($colors, seconday);
+    font-size: 2rem;
+    margin: 1rem 3rem;
+  }
+}
+
+.fa-html5 {
+  color: #e44d26;
+}
+.fa-js {
+  color: #f0db4f;
+}
+
+.fa-bootstrap {
+  color: #513d79;
+}
+
+.fa-sass {
+  color: #cd679a;
+}
+
+.fa-git-alt {
+  color: #f05033;
+}
+
+.fa-css3-alt {
+  color: #264de4;
+}
+
+@media only screen and (max-width: 688px) {
+  .tools {
+    .tools__container {
+      padding-top: 2rem;
+      text-align: center;
+      flex-direction: column;
+
+      i {
+        margin: 1rem 0;
+      }
+    }
+  }
+
+  .about-me {
+    .about-me__container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
